@@ -2,7 +2,7 @@ import streamlit as st
 import math
 import random
 
-st.set_page_config(page_title="TIC TAC TOE", page_icon="❌⭕")
+st.set_page_config(page_title="TIC TAC TOE", page_icon="❌⭕",layout="centered",initial_sidebar_state="collapsed")
 
 def mode_change():
     game()
@@ -201,4 +201,3 @@ else:
 
 
     
-
