@@ -1,12 +1,45 @@
 import streamlit as st
 import math
+import random
 
 st.set_page_config(page_title="TIC TAC TOE", page_icon="❌⭕")
+
+def mode_change():
+    game()
+st.sidebar.title("Game mode")
+st.sidebar.toggle("fun mode",key="modes",value=True,on_change=mode_change)
+
+st.sidebar.markdown("---")
+if st.session_state.modes:
+    st.sidebar.subheader("Fun Mode Rules")
+    st.sidebar.markdown("""
+    - Normal Tic Tac Toe rules apply  
+    - After early turns, a **hazard (@)** appears  
+    - The hazard:
+        - Blocks a cell
+        - Can remove X or O
+        - Moves every 2 turns
+    - Only **one hazard** exists at a time  
+    - Goal: Adapt to chaos and win
+    """)
+else:
+    st.sidebar.subheader("Standard Mode Rules")
+    st.sidebar.markdown("""
+    - Classic Tic Tac Toe   
+    - AI uses minimax (unbeatable)  
+    - Perfect play leads to draw
+    """)
+
 
 def game():
     st.session_state.board=[""]*9
     st.session_state.winner=None
     st.session_state.gameover=False
+    st.session_state.firstMove=False
+    #hazard
+    st.session_state.timer=0
+    st.session_state.player3move=None
+    st.session_state.count=0
 
 def WinCheck(board):
     combos = [
@@ -66,10 +99,30 @@ def bestMove():
                 move=i
     return move
 
+def player3():
+    if not st.session_state.modes:
+        return
+    if st.session_state.gameover:
+        return
+    turn=st.session_state.count//2
+
+    if turn<=1:
+        return
+    if st.session_state.player3move==None:
+        st.session_state.timer=2
+        st.session_state.player3move=random.randint(0,8)
+        return
+    else:
+        st.session_state.timer-=1
+        if st.session_state.timer==0:
+            st.session_state.board[st.session_state.player3move]=""
+            st.session_state.player3move=random.randint(0,8)
+            st.session_state.timer=2
 
 def playerMove(i):
     if st.session_state.board[i]=="" and not st.session_state.gameover:
         st.session_state.board[i]="X"
+        st.session_state.count+=1
         result=WinCheck(st.session_state.board)
         if result:
             st.session_state.winner=result
@@ -80,28 +133,60 @@ def playerMove(i):
         move=bestMove()
         if move is not None:
             st.session_state.board[move]="O"
+            st.session_state.count+=1
 
         result=WinCheck(st.session_state.board)
         if result:
             st.session_state.winner=result
-            st.session_state.gameover=True     
+            st.session_state.gameover=True 
 
+        player3()
+
+def Aimove():
+    move=bestMove()
+    if move is not None:
+        st.session_state.board[move]="O"
+        st.session_state.count+=1
+
+    result=WinCheck(st.session_state.board)
+    if result:
+        st.session_state.winner=result
+        st.session_state.gameover=True
+        
 
 
 st.title("🎮 Tic Tac Toe (AI – Minimax)")
 st.caption("You are ❌ | AI is ⭕ (unbeatable)")
+st.caption("Toggle to make AI go first")
+
 
 if "board" not in st.session_state:
     game()
 
+st.toggle("AI first",key="mover",value=False,on_change=game)
+
+st.button("Restart",on_click=game)
+
+if st.session_state.mover and not st.session_state.firstMove:
+    Aimove()
+    st.session_state.count+=1
+    st.session_state.firstMove=True   
+
 cols=st.columns(3)
 for i in range(9):
     with cols[i%3]:
+         
+
+        is_played=(st.session_state.modes and i==st.session_state.player3move)
+        if is_played:
+            st.session_state.board[i]="@"
+
         st.button(
             st.session_state.board[i] or " ",
             key=i,
             on_click=playerMove,
             args=(i,),
+            disabled=is_played,
             use_container_width=True
         )
    
@@ -113,7 +198,6 @@ if st.session_state.gameover:
 else:
     st.info("Your turn (X)")
 
-st.button("🔄 Restart", on_click=game)
 
 
     
