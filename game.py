@@ -7,7 +7,7 @@ st.set_page_config(page_title="TIC TAC TOE", page_icon="❌⭕")
 def mode_change():
     game()
 st.sidebar.title("Game mode")
-st.sidebar.toggle("fun mode",key="modes",value=True,on_change=mode_change)
+st.sidebar.toggle("fun mode",key="modes",value=False,on_change=mode_change)
 
 st.sidebar.markdown("---")
 if st.session_state.modes:
@@ -201,3 +201,4 @@ else:
 
 
     
+
