@@ -31,14 +31,22 @@ Streamlit
 Minimax Algorithm
 
 ▶ Run Locally
+git clone https://github.com/VishalV-phoenix/TIc_Tac_Toe.git
+cd TIc_Tac_Toe
 pip install streamlit
-streamlit run game.py
+streamlit run app.py
 
 
+**🌐 Deploy**
 
-🌐 Deploy
+Deployed using Streamlit Cloud by connecting this repository.
 
-Deploy easily using Streamlit Cloud by connecting this repository.
+https://tttgame.streamlit.app/
+
+**Screenshot**
+<img width="856" height="517" alt="image" src="https://github.com/user-attachments/assets/f307fa93-a77f-49c6-84ce-92a1ea2626d7" />
+<img width="1249" height="581" alt="image" src="https://github.com/user-attachments/assets/54bce35a-578b-4d43-b6e9-3a10eb0be7a1" />
+
 
 🧠 Notes
 
