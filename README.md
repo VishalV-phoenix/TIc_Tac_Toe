@@ -30,7 +30,7 @@ Streamlit
 
 Minimax Algorithm
 
-▶ Run Locally
+**▶ Run Locally**
 
 git clone https://github.com/VishalV-phoenix/TIc_Tac_Toe.git
 
@@ -47,12 +47,12 @@ Deployed using Streamlit Cloud by connecting this repository.
 
 https://tttgame.streamlit.app/
 
-**Screenshot**
+**📸Screenshot**
 <img width="856" height="517" alt="image" src="https://github.com/user-attachments/assets/f307fa93-a77f-49c6-84ce-92a1ea2626d7" />
 <img width="1249" height="581" alt="image" src="https://github.com/user-attachments/assets/54bce35a-578b-4d43-b6e9-3a10eb0be7a1" />
 
 
-🧠 Notes
+**🧠 Notes**
 
 AI is intentional, not random
 
@@ -60,6 +60,16 @@ Chaos Mode mutates the real board state
 
 Hazard timing is turn-based and consistent
 
-📄 License
+**🔨Troubleshooting**
+
+Mobile View
+- On mobile devices, the game is optimized for **landscape mode**.
+- If the board looks compressed or buttons overlap, rotate your device to landscape orientation.
+
+Streamlit Session Reset
+- If the board behaves unexpectedly, press the **Restart** button to reset the game state.
+
+
+**📄 License**
 
 Open-source, for learning and experimentation.
