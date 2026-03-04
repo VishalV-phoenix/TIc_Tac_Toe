@@ -31,9 +31,13 @@ Streamlit
 Minimax Algorithm
 
 ▶ Run Locally
+
 git clone https://github.com/VishalV-phoenix/TIc_Tac_Toe.git
+
 cd TIc_Tac_Toe
+
 pip install streamlit
+
 streamlit run app.py
 
 
