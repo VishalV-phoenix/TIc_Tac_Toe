@@ -1,4 +1,4 @@
-🎮 Tic Tac Toe — Streamlit AI
+🎮** Tic Tac Toe – AI Minimax + Chaos Mode**
 
 A Tic Tac Toe game built with Python and Streamlit, featuring an unbeatable Minimax AI and an optional Fun (Chaos) Mode that introduces a dynamic hazard to reduce repetitive draws.
 
@@ -21,14 +21,6 @@ Hazard blocks cells and can remove X or O
 Moves every 2 turns
 
 Designed to change game momentum and reduce draws
-
-Gameplay
-
-Player: ❌ | AI: ⭕
-
-AI-first or player-first toggle
-
-Clean 3×3 UI with disabled hazard cells
 
 **🛠 Tech Stack**
 
